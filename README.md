@@ -1,0 +1,1 @@
+Path2Profit™ is an AI-assisted entrepreneurship app that helps users move from vision to action. It provides an idea vault, questionnaires, and AI-generated business blueprints to bring clarity before hiring consultants or launching. Built to scale with GitHub, Netlify, Supabase, and OpenAI.
