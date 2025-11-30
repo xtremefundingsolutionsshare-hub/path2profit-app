@@ -23,7 +23,7 @@ body {
 
 /* Header / Branding */
 .pp-header {
-  background: var(--pp-deep-blue);
+  background: var(--pp-teal);
   color: var(--pp-white);
   padding: 1.25rem 1.75rem;
 }
@@ -164,6 +164,127 @@ body {
 }
 
 /* Footer */
+/* --- Buttons / CTAs --- */
+
+.pp-btn-primary {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--pp-gold);
+  color: var(--pp-white);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.pp-btn-primary:hover {
+  filter: brightness(0.95);
+}
+
+.pp-btn-secondary {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--pp-deep-blue);
+  background: var(--pp-white);
+  color: var(--pp-deep-blue);
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.pp-btn-secondary:hover {
+  background: #e5f3ff;
+}
+
+/* --- Generic sections (for memberships, quiz, docs, etc.) --- */
+
+.pp-section {
+  padding: 3rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.pp-section h2 {
+  color: var(--pp-text-main);
+  margin-bottom: 1rem;
+}
+
+.pp-section-intro {
+  max-width: 640px;
+  margin-bottom: 2rem;
+  color: var(--pp-text-muted);
+}
+
+/* --- Plan comparison table --- */
+
+.pp-table-scroll {
+  overflow-x: auto;
+}
+
+.pp-plan-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--pp-white);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+}
+
+.pp-plan-table th,
+.pp-plan-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--pp-border);
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.pp-plan-table th:first-child,
+.pp-plan-table td:first-child {
+  text-align: left;
+}
+
+.pp-plan-table thead {
+  background: var(--pp-deep-blue);
+  color: var(--pp-white);
+}
+
+/* --- AI Assistant / Interpreter Engine area --- */
+
+.pp-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.pp-textarea {
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid var(--pp-border);
+  padding: 0.75rem;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.pp-hint {
+  font-size: 0.8rem;
+  margin-top: 0.75rem;
+  color: var(--pp-text-muted);
+}
+
+/* --- Document list (6 doc types) --- */
+
+.pp-doc-list {
+  list-style: disc;
+  padding-left: 1.5rem;
+}
+
+.pp-doc-list li {
+  margin-bottom: 0.35rem;
+}
+
 .pp-footer {
   text-align: center;
   padding: 0.9rem 1rem;
