@@ -297,4 +297,24 @@ body {
   width: auto;
   display: block;
 }
+/* -------------------------------------- */
+/* LOGO + HEADER BRAND STYLING (NEW)      */
+/* -------------------------------------- */
+
+.pp-logo-img {
+  height: 48px;
+  width: auto;
+}
+
+.pp-header {
+  display: flex;
+  align-items: center;
+}
+
+.pp-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
 
