@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Extra styles just for the auth section -->
+  <!-- Extra inline styles just for the auth UI -->
   <style>
     .pp-auth-panel {
       margin-top: 1.5rem;
@@ -41,4 +41,256 @@
     }
     .pp-auth-card button {
       margin-top: 0.75rem;
-      width: 100
+      width: 100%;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: #0047ab;
+      color: #ffffff;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .pp-auth-card button:hover {
+      background: #00337f;
+    }
+    .pp-auth-status {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #374151;
+    }
+    .pp-auth-status span {
+      font-weight: 600;
+    }
+    .pp-logout-btn {
+      margin-top: 0.75rem;
+      border: none;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: #f97316;
+      color: #ffffff;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .pp-logout-btn:hover {
+      background: #ea580c;
+    }
+    .pp-badge {
+      display: inline-block;
+      padding: 0.15rem 0.4rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      background: #e0f2fe;
+      color: #0369a1;
+      margin-left: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="pp-header">
+    <div class="pp-logo-area">
+      <div class="pp-logo-circle">P2P</div>
+      <div class="pp-logo-text">
+        <h1>Path2Profit™</h1>
+        <p class="pp-tagline-main">Every Vision Needs a Path. Move Yours Forward.</p>
+        <p class="pp-tagline-secondary">Your Path. Your Plan. Your Profit. Let’s Build What’s Next.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="pp-main">
+    <aside class="pp-sidebar">
+      <h2 class="pp-sidebar-section">YOU</h2>
+      <nav class="pp-nav">
+        <button class="pp-nav-item pp-nav-item-active">Dashboard</button>
+        <button class="pp-nav-item">Idea Vault</button>
+        <button class="pp-nav-item">Vision Blueprint</button>
+        <button class="pp-nav-item">Questionnaires</button>
+        <button class="pp-nav-item">AI Assistant</button>
+      </nav>
+
+      <h2 class="pp-sidebar-section pp-sidebar-section-secondary">ACCOUNT</h2>
+      <nav class="pp-nav">
+        <button class="pp-nav-item" onclick="ppScrollToAuth()">Log In</button>
+        <button class="pp-nav-item" onclick="ppScrollToAuth()">Sign Up</button>
+      </nav>
+    </aside>
+
+    <section class="pp-content">
+      <h2>Welcome to Path2Profit™</h2>
+      <p>
+        This is your future founder’s workspace. Soon, this dashboard will guide Dreamers, Builders,
+        Founders, and CEOs through clear steps—from raw ideas to real, income-generating plans.
+      </p>
+
+      <div class="pp-card-grid">
+        <article class="pp-card">
+          <h3>Dreamer Membership</h3>
+          <p>Start in a safe, private space to explore your ideas, gifts, and goals—without pressure or judgment.</p>
+        </article>
+
+        <article class="pp-card">
+          <h3>Builder Membership</h3>
+          <p>Turn talents and hobbies into structured income paths with AI-assisted blueprints and tools.</p>
+        </article>
+
+        <article class="pp-card">
+          <h3>Founder &amp; CEO Tiers</h3>
+          <p>Plan legal structure, brand, systems, and growth strategies that connect directly with real consultants.</p>
+        </article>
+      </div>
+
+      <section class="pp-info-section">
+        <h3>What this app will do</h3>
+        <ul>
+          <li>Collect your ideas in a private vault.</li>
+          <li>Ask smart questions to clarify your vision.</li>
+          <li>Translate your answers into real business blueprints.</li>
+          <li>Help you understand next steps before hiring a consultant.</li>
+        </ul>
+      </section>
+
+      <!-- AUTH SECTION -->
+      <section id="pp-auth-section" class="pp-auth-panel">
+        <div class="pp-auth-card">
+          <h3>Create an Account <span class="pp-badge">Dreamer Tier</span></h3>
+          <label for="signup-email">Email</label>
+          <input id="signup-email" type="email" placeholder="you@example.com" />
+
+          <label for="signup-password">Password</label>
+          <input id="signup-password" type="password" placeholder="Create a password" />
+
+          <button onclick="ppSignUp()">Sign Up</button>
+          <p class="pp-auth-hint">Use this login to access your private Path2Profit space.</p>
+        </div>
+
+        <div class="pp-auth-card">
+          <h3>Log In</h3>
+          <label for="login-email">Email</label>
+          <input id="login-email" type="email" placeholder="you@example.com" />
+
+          <label for="login-password">Password</label>
+          <input id="login-password" type="password" placeholder="Your password" />
+
+          <button onclick="ppLogIn()">Log In</button>
+          <p class="pp-auth-hint">Return to your saved ideas, blueprints, and questionnaires.</p>
+        </div>
+
+        <div class="pp-auth-card">
+          <h3>Current Session</h3>
+          <div id="pp-auth-status" class="pp-auth-status">
+            Checking session...
+          </div>
+          <button class="pp-logout-btn" onclick="ppLogOut()">Log Out</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="pp-footer">
+    <small>© <span id="year"></span> Path2Profit™. All rights reserved.</small>
+  </footer>
+
+  <!-- Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function ppScrollToAuth() {
+      const section = document.getElementById('pp-auth-section');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // 🔑 Supabase connection (Path2Profit)
+    const SUPABASE_URL = 'https://juvlsejdvwxnbiqtdpgv.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp1dmxzZWpkdnd4bmJpcXRkcGd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ0MDQ4MTMsImV4cCI6MjA3OTk4MDgxM30.IGaLVi0yj8a2K6n7NElSNEhW0eS_20pZQPmwIYeHz7A';
+
+    const { createClient } = supabase;
+    const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    async function ppCheckSession() {
+      const statusEl = document.getElementById('pp-auth-status');
+      try {
+        const { data, error } = await supabaseClient.auth.getSession();
+        if (error) throw error;
+
+        if (data.session && data.session.user) {
+          statusEl.innerHTML = 'Logged in as <span>' + (data.session.user.email || 'Unknown') + '</span>';
+        } else {
+          statusEl.textContent = 'You are not logged in yet.';
+        }
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'Error checking session.';
+      }
+    }
+
+    async function ppSignUp() {
+      const email = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value.trim();
+      const statusEl = document.getElementById('pp-auth-status');
+
+      if (!email || !password) {
+        alert('Please enter email and password.');
+        return;
+      }
+
+      try {
+        const { data, error } = await supabaseClient.auth.signUp({
+          email,
+          password
+        });
+
+        if (error) throw error;
+
+        statusEl.textContent = 'Sign up successful. Check your email if confirmation is required, then log in.';
+      } catch (err) {
+        console.error(err);
+        alert('Sign up failed: ' + err.message);
+      }
+    }
+
+    async function ppLogIn() {
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value.trim();
+      const statusEl = document.getElementById('pp-auth-status');
+
+      if (!email || !password) {
+        alert('Please enter email and password.');
+        return;
+      }
+
+      try {
+        const { data, error } = await supabaseClient.auth.signInWithPassword({
+          email,
+          password
+        });
+
+        if (error) throw error;
+
+        statusEl.innerHTML = 'Logged in as <span>' + email + '</span>';
+      } catch (err) {
+        console.error(err);
+        alert('Log in failed: ' + err.message);
+      }
+    }
+
+    async function ppLogOut() {
+      const statusEl = document.getElementById('pp-auth-status');
+      try {
+        const { error } = await supabaseClient.auth.signOut();
+        if (error) throw error;
+
+        statusEl.textContent = 'You are not logged in yet.';
+      } catch (err) {
+        console.error(err);
+        alert('Log out failed: ' + err.message);
+      }
+    }
+
+    // Check session on load
+    ppCheckSession();
+  </script>
+</body>
+</html>
