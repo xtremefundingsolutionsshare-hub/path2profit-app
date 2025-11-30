@@ -291,3 +291,10 @@ body {
   font-size: 0.75rem;
   color: var(--pp-text-muted);
 }
+/* Logo image */
+.pp-logo-img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
